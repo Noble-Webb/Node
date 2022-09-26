@@ -1,28 +1,22 @@
-//import http module to create a server
-const { read } = require('fs');
+//import http as http constant
 const http = require('http');
-
-//function that executes for every incoming request
-//takes two arguments request:IncomingMessage & response:ServerResponse
-// request-  object that allows for reading data
-// response - object used to return responses
-// function rqListener (request, response) {
-    
-// };
-
-//routes all request to given function
-// http.createServer(rqListener);
-
-//anon function that does the same as above
-// returns a server
-const server = http.createServer((req, res) => {
-    //important information in the request
-    console.log(req.url, req.method, req.headers);
-    //how to exit server
-    // process.exit();
-
+//anon server function that takes request and response as arguments saved as a const
+const server = http.createServer((req, res) =>{
+    // parse url
+    const url = req.url;
+    //if url is '/' then send a response of a form with a button 
+    if(url === '/'){
+        res.write('<html>');
+        res.write('<head> <title>My First Node Form</title> </head>');
+        //action is the url the request should automatically sent to 
+        res.write('<body> <form action="/message method="POST"> <input type="text" name="message"> <button type="submit">Send </button></form> </body>');
+        res.write('</html>');
+        //ensure no more code is read after the end by adding return
+        return res.end();
+    };    
     //set accecpted header types ie tells browser what it is 
     res.setHeader('Content-Type', 'text/html');
+    
     //send html response
     res.write('<html>');
     res.write('<head> <title>My First Page </title> </head>');
