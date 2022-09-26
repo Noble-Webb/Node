@@ -15,9 +15,12 @@ const http = require('http');
 //anon function that does the same as above
 // returns a server
 const server = http.createServer((req, reqs) => {
-    console.log(req);
+    //important information in the request
+    console.log(req.url, req.method, req.headers);
+    //how to exit server
+    // process.exit();
 });
 
-//keeps server running to listen to request
+//Event Loop - keeps server running to listen to request
 //takes port & host name
 server.listen(3000);
