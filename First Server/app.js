@@ -21,8 +21,27 @@ const server = http.createServer((req, res) =>{
     //if the url matches the form's action and is a post request type
     //redirect use back to '/' and create a new file with the user input
     if(url ==='/message' && method ==='POST'){
-        //write a new file to environment
-        fs.writeFileSync('message.txt', 'Dummy');
+        //request body to be read from data 'chunk' obj
+        const body = [];
+        //event listener for data from the user ie message
+        req.on('data', (chunk) =>{
+            //view chunk object
+            console.log(chunk)
+            //push chunk data into local const body
+            body.push(chunk);
+        });
+        //request listner for when its done parsing incoming data
+        req.on('end', () =>{
+            //create a new buffer and add all the chunks from inside my body to it
+            //toString only works because we expect a text file
+            const parsedBody =Buffer.concat(body).toString();
+            // console.log(parsedBody);
+            //const of user input value
+            const message = parsedBody.split('=')[1];
+            //write a new file to environment named message that contains user input
+            fs.writeFileSync('message.txt', message);
+        });
+        
         //set status to 302 or redirect
         res.statusCode = 302;
         //writeHead- writes metadata in one go
