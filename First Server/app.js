@@ -31,7 +31,8 @@ const server = http.createServer((req, res) =>{
             body.push(chunk);
         });
         //request listner for when its done parsing incoming data
-        req.on('end', () =>{
+        //return to stop from reading later code
+        return req.on('end', () =>{
             //create a new buffer and add all the chunks from inside my body to it
             //toString only works because we expect a text file
             const parsedBody =Buffer.concat(body).toString();
@@ -40,13 +41,14 @@ const server = http.createServer((req, res) =>{
             const message = parsedBody.split('=')[1];
             //write a new file to environment named message that contains user input
             fs.writeFileSync('message.txt', message);
+            //set status to 302 or redirect
+            res.statusCode = 302;
+            //writeHead- writes metadata in one go
+            res.setHeader('Location', '/');
+            return res.end();
         });
         
-        //set status to 302 or redirect
-        res.statusCode = 302;
-        //writeHead- writes metadata in one go
-        res.setHeader('Location', '/');
-        return res.end();
+        
     };  
     //set accecpted header types ie tells browser what it is 
     res.setHeader('Content-Type', 'text/html');
