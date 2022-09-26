@@ -59,5 +59,9 @@ const requestHandler = (req, res) => {
     res.end();
 };
 // export handler
-module.exports = requestHandler;
+module.exports = {
+    handler: requestHandler,
+    someText: "hey hey"
+};
+//  module.exports = requestHandler
  

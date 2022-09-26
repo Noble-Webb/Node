@@ -5,7 +5,7 @@ const http = require('http');
 const routes = require('./routes');
 
 //anon server function that takes request and response as arguments saved as a const
-const server = http.createServer(routes);
+const server = http.createServer(routes.handler);
 
 //Event Loop - keeps server running to listen to request
 //takes port & host name
