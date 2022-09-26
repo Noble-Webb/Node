@@ -64,4 +64,5 @@ module.exports = {
     someText: "hey hey"
 };
 //  module.exports = requestHandler
+//exports.handler = requestHandler
  
