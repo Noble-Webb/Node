@@ -1,4 +1,4 @@
-//import node's file search and save it to a const
+//import node's file search module and save it to a const
 const fs = require('fs');
 //use import to create a (text) file with specified content 
 //use *node first-app.js* to run the app
