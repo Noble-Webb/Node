@@ -40,12 +40,15 @@ const server = http.createServer((req, res) =>{
             //const of user input value
             const message = parsedBody.split('=')[1];
             //write a new file to environment named message that contains user input
-            fs.writeFileSync('message.txt', message);
-            //set status to 302 or redirect
-            res.statusCode = 302;
-            //writeHead- writes metadata in one go
-            res.setHeader('Location', '/');
-            return res.end();
+            //writeFileSync blocks code execution until operation is done
+            fs.writeFile('message.txt', message, (err) =>{
+                //error handling done here
+                //set status to 302 or redirect
+                res.statusCode = 302;
+                //writeHead- writes metadata in one go
+                res.setHeader('Location', '/');
+                return res.end();
+                });
         });
         
         
