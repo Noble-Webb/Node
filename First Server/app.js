@@ -1,4 +1,5 @@
 //import http module to create a server
+const { read } = require('fs');
 const http = require('http');
 
 //function that executes for every incoming request
@@ -14,11 +15,20 @@ const http = require('http');
 
 //anon function that does the same as above
 // returns a server
-const server = http.createServer((req, reqs) => {
+const server = http.createServer((req, res) => {
     //important information in the request
     console.log(req.url, req.method, req.headers);
     //how to exit server
     // process.exit();
+
+    //set accecpted header types ie tells browser what it is 
+    res.setHeader('Content-Type', 'text/html');
+    //send html response
+    res.write('<html>');
+    res.write('<head> <title>My First Page </title> </head>');
+    res.write('<body> <h1>I created this page using nodejs sent from a server i created too!!</h1> </body>');
+    res.write('</html>');
+    res.end();
 });
 
 //Event Loop - keeps server running to listen to request
