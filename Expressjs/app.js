@@ -12,6 +12,9 @@ const app = express();
 
 //parser not for files
 app.use(bodyParser.urlencoded({extended: false}));
+//allows to statically read file/access
+//arg is the path for read access
+app.use(express.static(path.join(__dirname, 'public')));
 
 //exported routes from admin
 //can deconstruct routes
