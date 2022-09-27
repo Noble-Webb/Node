@@ -1,11 +1,12 @@
 const express = require('express');
 
 //routes
-const adminRoutes = require('./routes/admin')
+const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 //parsing
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 //catch-all error page
 app.use((req, res, next)=>{
-    res.status(404).send('<h1>404 Page not Found.</h1> </br > <h1> How did you get here?</h1>')
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
 app.listen(3000);
