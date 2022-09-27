@@ -1,4 +1,9 @@
 const express = require('express');
+
+//routes
+const adminRoutes = require('./routes/admin')
+const shopRoutes = require('./routes/shop');
+
 //parsing
 const bodyParser = require('body-parser');
 
@@ -7,19 +12,10 @@ const app = express();
 //parser not for files
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use('/add-product', (req, res, next) =>{
-    //form with improper html
-    res.send('<form action="/product" method="POST"> <input type="text" name="title"> <button type="submit"> Add Product </button></form>')
-});
+//exported routes from admin
+app.use(adminRoutes);
+//exported routes from shop
+app.use(shopRoutes);
 
-app.use('/product', (req, res, next) =>{
-    console.log(req.body);
-    //redirect with express
-    res.redirect('/');
-});
-
-app.use('/', (req, res, next) =>{
-    res.send('<h1>Error Page?</h1>')
-});
 
 app.listen(3000);
