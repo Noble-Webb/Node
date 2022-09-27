@@ -13,7 +13,8 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 
 //exported routes from admin
-app.use(adminRoutes);
+//can deconstruct routes
+app.use('/admin', adminRoutes);
 //exported routes from shop
 app.use(shopRoutes);
 //catch-all error page
