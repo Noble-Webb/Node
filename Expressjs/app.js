@@ -14,4 +14,4 @@ app.use('/', (req, res, next) =>{
     res.send('<h1>Error Page?</h1>')
 });
 
-app.lsiten(3000);
+app.listen(3000);
