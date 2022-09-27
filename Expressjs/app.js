@@ -16,6 +16,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(adminRoutes);
 //exported routes from shop
 app.use(shopRoutes);
-
+//catch-all error page
+app.use((req, res, next)=>{
+    res.status(404).send('<h1>404 Page not Found.</h1> </br > <h1> How did you get here?</h1>')
+});
 
 app.listen(3000);
