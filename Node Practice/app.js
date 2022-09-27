@@ -1,10 +1,15 @@
-//import http
-const http = require('http');
+const express = require('express');
 
-//import routes
-const routes = require('./routes');
-//create server
-const server = http.createServer(routes)
+const app = express();
 
-//have server listen on 3000
-server.listen(3000)
+app.use('/users', (req, res, next) =>{
+    console.log("Wow you just hit me!");
+    res.send('<h1>You just made the list buddy!</h1>');
+});
+
+app.use('/', (req, res, next) =>{
+    console.log("Bet you can't hit me!");
+    res.send('<h1>So you actually showed up huh</h1>');
+}); 
+
+app.listen(3000);
