@@ -3,6 +3,8 @@
 const express = require('express');
 const path = require('path');
 
+const rootDir =require('../util/path');
+
 // mini plugable express app
 const router = express.Router();
 
@@ -10,7 +12,7 @@ const router = express.Router();
 // /admin/add-porduct => GET
 router.get('/add-product', (req, res, next) =>{
     //form with improper html
-    res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'))
+    res.sendFile(path.join(rootDir, 'views', 'add-product.html'))
 });
 
 //only triggers for POST requests
