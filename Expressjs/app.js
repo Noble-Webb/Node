@@ -1,6 +1,11 @@
 const express = require('express');
+//parsing
+const bodyParser = require('body-parser');
 
 const app = express();
+
+//parser not for files
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/add-product', (req, res, next) =>{
     //form with improper html
@@ -8,6 +13,7 @@ app.use('/add-product', (req, res, next) =>{
 });
 
 app.use('/product', (req, res, next) =>{
+    console.log(req.body);
     //redirect with express
     res.redirect('/');
 });
