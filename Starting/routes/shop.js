@@ -10,10 +10,13 @@ const adminData = require('./admin');
 
 
 router.get('/', (req, res, next) =>{
+    //access products
+    const products = adminData.products;
     //will use default templating engine and render
     //simplified since we define template and 
     // location in app.js
-    res.render('shop');
+    //data mapped to key/value pairs in object
+    res.render('shop', {prods: products, docTitle: 'Shop'});
 });
 
 module.exports = router;
