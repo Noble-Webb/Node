@@ -11,6 +11,8 @@ const path = require('path');
 //set globalconfiguration value
 //works because we installed pug and will auto register
 app.set('view engine', 'pug');
+//set where to look for views/templates views is default
+app.set('views', 'views');
 
 const app = express();
 
