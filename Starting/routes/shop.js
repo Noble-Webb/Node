@@ -10,10 +10,10 @@ const adminData = require('./admin');
 
 
 router.get('/', (req, res, next) =>{
-    //console log imported products
-    console.log(adminData.products);
-
-    res.sendFile(path.join(rootDir, 'views', 'shop.html'));
+    //will use default templating engine and render
+    //simplified since we define template and 
+    // location in app.js
+    res.render('shop');
 });
 
 module.exports = router;

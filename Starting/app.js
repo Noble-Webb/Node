@@ -1,5 +1,7 @@
 const express = require('express');
 
+const app = express();
+
 //routes
 const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
@@ -14,7 +16,6 @@ app.set('view engine', 'pug');
 //set where to look for views/templates views is default
 app.set('views', 'views');
 
-const app = express();
 
 //parser not for files
 app.use(bodyParser.urlencoded({extended: false}));
