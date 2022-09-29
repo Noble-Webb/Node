@@ -13,7 +13,7 @@ const products = [];
 //only handles GET request
 // /admin/add-porduct => GET
 router.get('/add-product', (req, res, next) =>{
-    res.render('add-product', {docTitle: 'Add Product'});
+    res.render('add-product', {docTitle: 'Add Product', path: '/admin/add-product'});
 });
 
 //only triggers for POST requests
