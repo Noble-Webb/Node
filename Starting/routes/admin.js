@@ -13,8 +13,7 @@ const products = [];
 //only handles GET request
 // /admin/add-porduct => GET
 router.get('/add-product', (req, res, next) =>{
-    //form with improper html
-    res.sendFile(path.join(rootDir, 'views', 'add-product.html'))
+    res.render('add-product', {docTitle: 'Add Product'});
 });
 
 //only triggers for POST requests
