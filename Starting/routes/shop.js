@@ -16,7 +16,8 @@ router.get('/', (req, res, next) =>{
     //simplified since we define template and 
     // location in app.js
     //data mapped to key/value pairs in object
-    res.render('shop', {prods: products, docTitle: 'Shop', path: '/'});
+    res.render('shop', {prods: products, docTitle: 'Shop', path: '/', hasProducts: products.length > 0, activeShop: true, productCSS: true
+    });
 });
 
 module.exports = router;
