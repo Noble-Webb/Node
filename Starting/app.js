@@ -8,6 +8,10 @@ const shopRoutes = require('./routes/shop');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+//set globalconfiguration value
+//works because we installed pug and will auto register
+app.set('view engine', 'pug');
+
 const app = express();
 
 //parser not for files
