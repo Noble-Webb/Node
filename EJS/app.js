@@ -7,6 +7,7 @@ const app = express();
 //routes
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const errorController = require('./controllers/404'); 
 
 app.set('view engine', 'ejs'); 
 app.set('views', 'views');
@@ -24,8 +25,6 @@ app.use('/admin', adminRoutes);
 //exported routes from shop
 app.use(shopRoutes);
 //catch-all error page
-app.use((req, res, next)=>{
-    res.status(404).render('404', {docTitle: '404'});
-});
+app.use(errorController.get404);
 
 app.listen(3000);
