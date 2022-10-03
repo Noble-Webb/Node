@@ -5,7 +5,7 @@ const path = require('path');
 const app = express();
 
 //routes
-const adminData = require('./routes/admin');
+const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 app.set('view engine', 'ejs'); 
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //exported routes from admin
 //can deconstruct routes
 //adminData holds all of the exports need to signify 
-app.use('/admin', adminData.routes);
+app.use('/admin', adminRoutes);
 //exported routes from shop
 app.use(shopRoutes);
 //catch-all error page
