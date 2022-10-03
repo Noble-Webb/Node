@@ -5,7 +5,7 @@ const path = require('path');
 
 const rootDir =require('../util/path');
 
-// mini plugable express app
+// mini plugable express app 
 const router = express.Router();
 
 const products = []; 
@@ -14,7 +14,7 @@ const products = [];
 // /admin/add-porduct => GET
 router.get('/add-product', (req, res, next) =>{
     res.render('add-product', {docTitle: 'Add Product', path: '/admin/add-product', activeAddProduct: true, formCSS: true, productCSS: true});
-});
+}); 
 
 //only triggers for POST requests
 // /admin/add-porduct => POST
@@ -24,7 +24,7 @@ router.post('/add-product', (req, res, next) =>{
     //matching req.body obj
     products.push({title: req.body.title});
 
-    //redirect with express
+    //redirect with express 
     res.redirect('/');
 });
 
