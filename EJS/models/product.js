@@ -1,6 +1,18 @@
 const fs = require('fs');
 const path = require('path')
 const rootDir = require('../util/path');
+const p = path.join(rootDir, 'data', 'products.json');
+
+const getProductsFromFile = cb =>{
+    fs.readFile(p, (err, fileContent) =>{
+        //if an error
+        if(err){
+            //callback to help with async
+            return cb([]);
+        };
+        cb(JSON.parse(fileContent));
+    });
+};
 
 module.exports = class Product{
     constructor(title){
@@ -8,16 +20,7 @@ module.exports = class Product{
     };
 
     save(){
-        //stores products in a file in json format
-        const p = path.join(rootDir, 'data', 'products.json');
-        //read file data
-        fs.readFile(p, (err, fileContent) =>{
-            let products = [];
-            //if no err read file
-            if(!err){
-                //read JSON
-                products =JSON.parse(fileContent);
-            };
+        getProductsFromFile(products => {
             products.push(this);
             //create JSON
             fs.writeFile(p, JSON.stringify(products), (err) =>{
@@ -27,15 +30,6 @@ module.exports = class Product{
     };
     //static ensure that you can call the method on the class itself
     static fetchAll(cb){
-        const p = path.join(rootDir, 'data', 'products.json');
-
-        fs.readFile(p, (err, fileContent) =>{
-            //if an error
-            if(err){
-                //callback to help with async
-                cb([]);
-            };
-            cb(JSON.parse(fileContent));
-        });
+        getProductsFromFile(cb);
     };
 };
