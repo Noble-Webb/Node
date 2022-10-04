@@ -29,6 +29,12 @@ exports.getCart = (req, res, next) =>{
         docTitle: 'Cart'
     })
 };
+exports.getOrders = (req, res, next) =>{
+    res.render('shop/orders', {
+        path: '/orders',
+        docTitle: 'Orders'
+    })
+};
 
 exports.getCheckout = (req, res, next) => {
     res.render('/shop/checkout', {
