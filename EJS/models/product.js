@@ -23,6 +23,8 @@ module.exports = class Product{
     };
 
     save(){
+        //unique id
+        this.id = Math.random().toString();
         getProductsFromFile(products => {
             products.push(this);
             //create JSON
@@ -34,5 +36,14 @@ module.exports = class Product{
     //static ensure that you can call the method on the class itself
     static fetchAll(cb){
         getProductsFromFile(cb);
+    };
+
+    static findById(id, cb){
+        getProductsFromFile(products =>{
+            //synchronus
+            const product = products.find(p => p.id === id);
+            //allows for async
+            cb(product);
+        });
     };
 };
