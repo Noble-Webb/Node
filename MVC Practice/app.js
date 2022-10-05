@@ -15,8 +15,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 const errController = require('./controllers/404');
+const adminRoutes = require('./routes/admin')
 
-
+app.use('/admin', adminRoutes);
 app.use(errController.get404);
-
 app.listen(3000);

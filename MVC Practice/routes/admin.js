@@ -4,6 +4,6 @@ const router = express.Router();
 
 const adminController = require('../controllers/admin');
 
-router.get('/dogs');
+router.get('/dogs', adminController.getDogs);
 
 module.exports = router;

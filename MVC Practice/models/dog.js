@@ -8,7 +8,7 @@ const getDogsFromFile = cb =>{
     fs.readFile(p, (err, fileContent) =>{
         //if there is no data add an empty array
         if(err){
-            return cb([])
+            return cb([]) 
         };
         //else parse the file content
         cb(JSON.parse(fileContent));
@@ -24,6 +24,7 @@ module.exports = class Dog{
 
     save(){
         getDogsFromFile(dogs =>{
+            dogs.push(this);
             fs.writeFile(p, JSON.stringify(dogs), (err) =>{
                 console.log(err);
             });

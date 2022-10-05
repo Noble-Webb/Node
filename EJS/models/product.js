@@ -6,7 +6,7 @@ const p = path.join(rootDir, 'data', 'products.json');
 const getProductsFromFile = cb =>{
     fs.readFile(p, (err, fileContent) =>{
         //if an error
-        if(err){
+        if(err){ 
             //callback to help with async
             return cb([]);
         };
