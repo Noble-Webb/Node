@@ -47,5 +47,42 @@ module.exports = class Cart {
         });
     };
 
+    static deleteProduct (id, productPrice){
+        fs.readFile(p, (err, fileContent) =>{
+           //if error return since cart doesn't exist
+           if (err){
+                return;
+           }
+           //update the cart
+            //..cart  is parsed from fileContent
+           const updatedCart = {...JSON.parse(fileContent)};
+           //find product
+           const product = updatedCart.products.find(prod => prod.id === id);
+           //if we don't have a product
+           if(!product){
+                return;
+           };
+           //how often is product in cart ie qty
+           const productQty = product.qty;
+           //filter all non-matches
+           updatedCart.products = updatedCart.products.filter(prod => prod.id !== id);
+           //new total
+           updatedCart.totalPrice = updatedCart.totalPrice - (productPrice * productQty);
 
+           fs.writeFile(p, JSON.stringify(updatedCart), err =>{
+            console.log(err);
+            });
+        });
+    };
+
+    static getCart(cb){
+        fs.readFile(p, (err, fileContent) =>{
+            const cart = JSON.parse(fileContent);
+            if(err){
+                cb(null);
+            } else{
+                cb(cart);
+            };
+        });
+    };
 };

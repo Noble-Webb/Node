@@ -18,4 +18,11 @@ router.get('/add-product', adminController.getAddProduct);
 // /admin/add-porduct => POST
 router.post('/add-product', adminController.postAddProduct);
 
+//':' is a dynamic path segment
+router.get('/edit-product/:productId', adminController.getEditProduct);
+
+router.post('/edit-product', adminController.postEditProduct);
+
+router.post('/delete-product', adminController.postDeleteProduct);
+
 module.exports = router;
