@@ -31,7 +31,7 @@ exports.getIndex = (req, res, next) =>{
         res.render('shop/index', {
             prods: products, 
             pageTitle: 'Shop', 
-            path: '/', hasProducts: products.length > 0, activeShop: true, productCSS: true
+            path: '/', hasProducts: products.length > 0, 
     });
 });
 };
